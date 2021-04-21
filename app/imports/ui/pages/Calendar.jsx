@@ -1,8 +1,9 @@
 import React from 'react';
-import { Grid, Segment, Header, Label, Button } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 import CalendarWidget from '../components/CalendarWidget';
+import AppointmentListing from '../components/appointments/AppointmentListing';
 
-/** Renders the Page for adding stuff. */
+/** Renders the Calendar page. */
 class Calendar extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -13,22 +14,20 @@ class Calendar extends React.Component {
           <Header as="h2" textAlign="center">Calendar</Header>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column width={4}>
-            <Header as="h3" textAlign="center">Upcoming Appointments</Header>
-            <Segment vertical>
-              Dr Smith: Thursday, 11th April
-              <br/>
-              <Label>11:30am</Label>
-              <Label icon='edit' content={'Edit'} as={'a'}/>
-              <Label icon='trash can' content={'Delete'} color={'red'} as={'a'}/>
-            </Segment>
-            <Segment vertical>Pellentesque habitant morbi tristique senectus.</Segment>
-            <Segment vertical>
-              Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id.
-            </Segment>
-          </Grid.Column>
           <Grid.Column width={12}>
             <CalendarWidget/>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Grid.Row>
+              <Header as="h3" textAlign="center">Upcoming Appointments</Header>
+              <hr/>
+            </Grid.Row>
+            <Grid.Row style={{ maxHeight: '39.5rem', overflowY: 'scroll' }}>
+              {[...Array(10)].map(
+                (index) => <AppointmentListing key={index}/>,
+              )}
+              <AppointmentListing/>
+            </Grid.Row>
           </Grid.Column>
         </Grid.Row>
       </Grid>
