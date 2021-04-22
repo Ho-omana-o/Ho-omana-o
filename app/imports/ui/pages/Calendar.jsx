@@ -22,7 +22,7 @@ class Calendar extends React.Component {
               <Header as="h3" textAlign="center">Upcoming Appointments</Header>
               <hr/>
             </Grid.Row>
-            <Grid.Row style={{ maxHeight: '600px', overflowY: 'scroll' }}>
+            <Grid.Row style={{ maxHeight: '560px', overflowY: 'scroll' }}>
               {[...Array(10)].map(
                 (value, index) => <AppointmentListing key={index}/>,
               )}

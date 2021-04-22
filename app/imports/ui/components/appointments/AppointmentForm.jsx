@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
@@ -11,12 +11,10 @@ import {
   ListField,
   ListItemField,
   SelectField,
-  NestField,
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import Nest from 'uniforms-semantic/src/NestField';
 
 const formSchema = new SimpleSchema({
   allDay: {

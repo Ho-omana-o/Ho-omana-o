@@ -8,7 +8,7 @@ import {
   SubmitField,
   TextField,
   ListItemField,
-  SelectField, NumField, LongTextField, ListField
+  SelectField, NumField, LongTextField, ListField,
 } from 'uniforms-semantic';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
