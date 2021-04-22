@@ -26,7 +26,7 @@ class AppointmentListing extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-      <Segment vertical>
+      <Segment vertical className={'appointment-list'}>
         Dr Smith: Thursday, 11th April
         <br/>
         <Label>11:30am</Label>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Header } from 'semantic-ui-react';
-import CalendarWidget from '../components/CalendarWidget';
+import CalendarWidget from '../components/calendar/CalendarWidget';
 import AppointmentListing from '../components/appointments/AppointmentListing';
 
 /** Renders the Calendar page. */
@@ -22,9 +22,9 @@ class Calendar extends React.Component {
               <Header as="h3" textAlign="center">Upcoming Appointments</Header>
               <hr/>
             </Grid.Row>
-            <Grid.Row style={{ maxHeight: '39.5rem', overflowY: 'scroll' }}>
+            <Grid.Row style={{ maxHeight: '600px', overflowY: 'scroll' }}>
               {[...Array(10)].map(
-                (index) => <AppointmentListing key={index}/>,
+                (value, index) => <AppointmentListing key={index}/>,
               )}
               <AppointmentListing/>
             </Grid.Row>
