@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
@@ -7,11 +7,16 @@ import {
   BoolField,
   TextField,
   LongTextField,
+  NumField,
   ListField,
+  ListItemField,
+  SelectField,
+  NestField,
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import Nest from 'uniforms-semantic/src/NestField';
 
 const formSchema = new SimpleSchema({
   allDay: {
@@ -49,16 +54,19 @@ const formSchema = new SimpleSchema({
     type: Object,
   },
   'reminders.$.type': {
+    optional: true,
     type: String,
     defaultValue: 'Email',
     allowedValues: ['Email', 'Text'],
   },
   'reminders.$.time': {
+    optional: true,
     type: String,
     defaultValue: 'Minute',
     allowedValues: ['Minutes', 'Hours', 'Days'],
   },
   'reminders.$.number': {
+    optional: true,
     type: Number,
     min: 0,
   },
@@ -86,18 +94,24 @@ class AppointmentForm extends React.Component {
     return (
       <div>
         <Form as={AutoForm}
+              model={this.props.event}
+              readOnly
               style={{ textAlign: 'left', maxHeight: '500px', overflowY: 'scroll' }}
               schema={bridge}
               className={'reminder-fields'}>
-          <TextField name='title' readOnly value={this.props.event.title}/>
-          <TextField name='location' readOnly value={this.props.event.location}/>
-          <TextField name='type' readOnly value={this.props.event.type}/>
-          <DateField name='start' readOnly value={this.props.event.start}/>
-          <DateField name='end' readOnly value={this.props.event.end}/>
-          <BoolField name='allDay' readOnly/>
-          <LongTextField name='extraInfo' readOnly value={this.props.event.extraInfo}/>
-          <ListField name="reminders" label={'Reminders'} readOnly
-                     initialCount={this.props.event.reminders.length} itemProps={this.props.event.reminders}>
+          <TextField name='title' disabled/>
+          <TextField name='location' disabled/>
+          <TextField name='type' disabled/>
+          <DateField name='start' disabled/>
+          <DateField name='end' disabled/>
+          <BoolField name='allDay' disabled/>
+          <LongTextField name='extraInfo' disabled />
+          <ListField name="reminders" label={'Reminders'} disabled>
+            <ListItemField name='$' disabled style={{ opacity: '1' }}>
+              <SelectField name='type' disabled/>
+              <NumField name='number' disabled/>
+              <SelectField name='time' disabled/>
+            </ListItemField>
           </ListField>
           <ErrorsField/>
         </Form>

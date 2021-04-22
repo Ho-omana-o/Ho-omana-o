@@ -54,12 +54,12 @@
     background: #f3f3f3 !important;
 }
 
-.form.ui.form.reminder-fields div.middle.aligned.content div.grouped.fields {
+.form.ui.form.reminder-fields div.middle.aligned.content {
     display: inline-flex !important;
 }
 
-.form.ui.form.reminder-fields div.middle.aligned.content {
-    display: inline-flex !important;
+.form.ui.form.reminder-fields div.disabled.required.field, .form.ui.form.reminder-fields div.disabled.required.field label, .form.ui.form.reminder-fields div.disabled.field, .form.ui.form.reminder-fields div.disabled.field label, .form.reminder-fields div.ui.disabled.grouped.fitted.fields.list div  {
+    opacity: 1 !important;
 }
 
 .reminder-modal {
