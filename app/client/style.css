@@ -66,3 +66,16 @@
     min-width: 60rem;
     padding: 1.5rem;
 }
+
+.taro-background {
+  background: url('/images/HawaiianTheme.png') no-repeat center center;
+  background-size: cover, contain;
+  height: 1000px;
+}
+
+.grid-row {
+  margin-right: 30em;
+  margin-left: 30em;
+  min-width: 600px;
+  max-width: 600px;
+}

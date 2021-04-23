@@ -16,6 +16,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Calendar from '../pages/Calendar';
+import Login from '../pages/Login';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
+              <Route path="/login" component={Login}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListStuff}/>
               <ProtectedRoute path="/calandar" component={Calendar}/>
@@ -55,7 +57,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
       const isLogged = Meteor.userId() !== null;
       return isLogged ?
           (<Component {...props} />) :
-          (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+          (<Redirect to={{ pathname: '/login', state: { from: props.location } }}/>
       );
     }}
   />
@@ -74,7 +76,7 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
           const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
           return (isLogged && isAdmin) ?
               (<Component {...props} />) :
-              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              (<Redirect to={{ pathname: '/login', state: { from: props.location } }}/>
               );
         }}
     />
