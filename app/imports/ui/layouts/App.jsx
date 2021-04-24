@@ -16,6 +16,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Calendar from '../pages/Calendar';
+import Help from '../pages/Help';
 import Login from '../pages/Login';
 import AccountSettings from '../pages/AccountSettings';
 
@@ -38,6 +39,7 @@ class App extends React.Component {
               <ProtectedRoute path="/accountsettings" component={AccountSettings}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
+              <ProtectedRoute path="/help" component={Help}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>
