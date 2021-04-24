@@ -110,6 +110,7 @@ p {
 
 .helppage-background {
     background: url('./images/HelpPage.png') repeat-y center center;
+    background-size: cover, contain;
 }
 
 .taro-background {
