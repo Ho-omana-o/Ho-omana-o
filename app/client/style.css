@@ -67,6 +67,10 @@
     padding: 1.5rem;
 }
 
+.helppage-background {
+    background: url('./images/HelpPage.png') repeat-y center center;
+}
+
 .taro-background {
   background: url('/images/HawaiianTheme.png') no-repeat center center;
   background-size: cover, contain;
