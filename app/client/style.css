@@ -84,6 +84,20 @@
   max-width: 600px;
 }
 
+.landing-background {
+  background: url('/images/landing.png') no-repeat center center;
+  background-size: cover, contain;
+  height: 1000px;
+  min-width: 1000px;
+}
+
+.signup-background {
+  background: url('/images/signin.png') no-repeat center center;
+  background-size: cover, contain;
+  height: 1000px;
+  min-width: 1000px;
+}
+
 .account-settings-bg {
   background: url('/images/AccountSettings.png');
   background-size: cover;
