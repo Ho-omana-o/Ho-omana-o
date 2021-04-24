@@ -66,3 +66,7 @@
     min-width: 60rem;
     padding: 1.5rem;
 }
+
+.helppage-background {
+    background: url('./images/HelpPage.png') repeat-y center center;
+}
