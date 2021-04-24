@@ -9,22 +9,28 @@ import { Roles } from 'meteor/alanning:roles';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px' };
     return (
-      <Menu style={menuStyle} attached="top" borderless inverted>
+        <Menu style={{ marginBottom: '10px', backgroundColor: '#1a2626' }} attached="top" borderless>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
-          <Header inverted as='h1'>meteor-application-template</Header>
+          <Header as='h1' style={{ backgroundColor: '#1a2626', color: 'white' }}>
+            HO&apos;OMANA&apos;O
+          </Header>
         </Menu.Item>
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/calendar" key='calendar'>Calendar</Menu.Item>,
+            [<Menu.Item as={NavLink} activeClassName="active" exact to="/calendar" key='calendar'>
+              <h4 style={{ backgroundColor: '#1a2626', color: 'white' }}>Calendar</h4>
+            </Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>
+              Admin
+            </Menu.Item>
         ) : ''}
         <Menu.Item position="right">
           {this.props.currentUser === '' ? (
-            <Dropdown text="Login" pointing="top right" icon={'user'}>
+              <Dropdown text="Login " pointing="top right" icon={'user'}
+                        style={{ backgroundColor: '#1a2626', color: 'white' }}>
               <Dropdown.Menu>
                 <Dropdown.Item icon="user" text="Sign In" as={NavLink} exact to="/login"/>
                 <Dropdown.Item icon="add user" text="Sign Up" as={NavLink} exact to="/signup"/>

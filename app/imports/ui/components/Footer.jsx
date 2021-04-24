@@ -1,17 +1,17 @@
 import React from 'react';
+import { Header } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const divStyle = { paddingTop: '15px' };
+    const divStyle = { paddingTop: '50px' };
     return (
-        <footer>
+        <footer style={{ marginBottom: '10px', backgroundColor: '#1a2626' }}>
           <div style={divStyle} className="ui center aligned container">
-            <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822 <br />
-            <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
+            <Header as='h4' style={{ backgroundColor: '#1a2626', color: 'white',
+                marginBottom: '50px' }}>
+              Footer
+            </Header>
           </div>
         </footer>
     );
