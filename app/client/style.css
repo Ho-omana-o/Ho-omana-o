@@ -133,4 +133,9 @@ p {
   background-size: cover, contain;
   height: 1000px;
   min-width: 1000px;
+
+.account-settings-bg {
+  background: url('/images/AccountSettings.png');
+  background-size: cover;
+  height: 1000px;
 }
