@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
 
 /**
@@ -39,38 +39,42 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-      <Container>
-        <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">
-              Register your account
-            </Header>
-            <Form onSubmit={this.submit}>
-              <Segment stacked>
-                <Form.Input
-                  label="Email"
-                  icon="user"
-                  iconPosition="left"
-                  name="email"
-                  type="email"
-                  placeholder="E-mail address"
-                  onChange={this.handleChange}
-                />
-                <Form.Input
-                  label="Password"
-                  icon="lock"
-                  iconPosition="left"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  onChange={this.handleChange}
-                />
-                <Form.Button content="Submit"/>
+        <Grid className="signup-background" centered fluid>
+          <Grid.Row className="grid-row" verticalAlign="middle" stretched columns={1}>
+            <Grid.Column>
+              <Header as="h1" block textAlign="center"
+                      style={{ fontSize: '50px', backgroundColor: '#1a2626', color: 'white' }}
+              >
+                Sign up with us today
+              </Header>
+              <Segment attached
+                       style={{ fontSize: '50px', backgroundColor: '#1a2626', color: 'white' }}
+              >
+                <Form className="fluid" onSubmit={this.submit}>
+                  <Form.Input
+                      label="Email"
+                      icon="user"
+                      iconPosition="left"
+                      name="email"
+                      type="email"
+                      placeholder="Example@email.com"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Input
+                      label="Password"
+                      icon="lock"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Button content="Login"/>
+                </Form>
               </Segment>
-            </Form>
-            <Message>
-              Already have an account? Login <Link to="/login">here</Link>
-            </Message>
+              <Message attached="bottom">
+                <Link to="/login">Already have an account? Login here!</Link>
+              </Message>
             {this.state.error === '' ? (
               ''
             ) : (
@@ -81,8 +85,8 @@ class Signup extends React.Component {
               />
             )}
           </Grid.Column>
+        </Grid.Row>
         </Grid>
-      </Container>
     );
   }
 }

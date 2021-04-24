@@ -1,3 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Work+Sans&display=swap');
+
+#uniforms-0000-0001, #uniforms-0000-0002, #uniforms-0000-0004, #uniforms-0000-0005 {
+  font-family: 'Lato', sans-serif!important;
+}
+
+h3, h1, h2 {
+  font-family: 'Quicksand', sans-serif!important;
+  letter-spacing: 2px;
+  text-transform: uppercase!important;
+}
+
+h4, p {
+  font-family: 'Quicksand', sans-serif!important;
+  letter-spacing: 2px;
+  text-transform: uppercase !important;
+}
+
+p {
+  text-transform: none!important;
+}
+
+.welcome{
+  font-size: 22px;
+}
+
+.whtBtn {
+  background-color: #1a2626 !important;
+  color: #fff !important;
+}
+
+.segments{
+  padding-top: 50px;
+}
+
+#bodyid .create-new-btn{
+  border-radius: 0;
+  background-color: #1a2626;
+}
+
+
 .rbc-calendar {
     min-height: 600px;
 }
