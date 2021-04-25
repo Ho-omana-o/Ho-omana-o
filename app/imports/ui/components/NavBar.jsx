@@ -21,8 +21,9 @@ class NavBar extends React.Component {
             </Menu.Item>]
         ) : ''}
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/calendar" key='calendar'>Calendar</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/help" key='help'>Help</Menu.Item>]
+            [<Menu.Item as={NavLink} activeClassName="active" exact to="/help" key='help'>
+              <h4 style={{ backgroundColor: '#1a2626', color: 'white' }} > Help </h4>
+            </Menu.Item>]
         ) : ''}
         <Menu.Item position="right">
           {this.props.currentUser === '' ? (
@@ -34,7 +35,8 @@ class NavBar extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
           ) : (
-            <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
+            <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}
+                      style={{ backgroundColor: '#1a2626', color: 'white' }}>
               <Dropdown.Menu>
                   <Dropdown.Item icon="address card outline" text="Settings" as={NavLink} exact to="/accountsettings"/>
                 <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
