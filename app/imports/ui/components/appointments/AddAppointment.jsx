@@ -31,8 +31,8 @@ class AppointmentForm extends React.Component {
   }
 
   submit = (data) => {
-    const { allDay, start, end, title, location, type, extraInfo, reminders } = data;
-    appointmentDefineMethod.call({ allDay, start, end, title, location, type, extraInfo, reminders },
+    const { allDay, owner, start, end, title, location, type, extraInfo, reminders } = data;
+    appointmentDefineMethod.call({ allDay, owner, start, end, title, location, type, extraInfo, reminders },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
