@@ -15,58 +15,11 @@ import {
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
+import swal from 'sweetalert';
+import { Appointments } from '../../../api/appointment/AppointmentCollection';
+import { appointmentDefineMethod } from '../../../api/appointment/AppointmentCollection.method';
 
-const formSchema = new SimpleSchema({
-  allDay: {
-    type: Boolean,
-    optional: true,
-  },
-  start: {
-    type: Date,
-  },
-  end: {
-    type: Date,
-  },
-  owner: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  type: {
-    type: String,
-  },
-  extraInfo: {
-    type: String,
-    optional: true,
-  },
-  reminders: {
-    optional: true,
-    type: Array,
-  },
-  'reminders.$': {
-    optional: true,
-    type: Object,
-  },
-  'reminders.$.type': {
-    type: String,
-    allowedValues: ['Email', 'Text'],
-  },
-  'reminders.$.time': {
-    type: String,
-    allowedValues: ['Minutes', 'Hours', 'Days'],
-  },
-  'reminders.$.number': {
-    type: Number,
-    min: 0,
-  },
-});
-
-const bridge = new SimpleSchema2Bridge(formSchema);
+const bridge = new SimpleSchema2Bridge(Appointments.getSchema());
 
 /** Renders the widget for editing appointments. */
 class AppointmentForm extends React.Component {
@@ -78,9 +31,17 @@ class AppointmentForm extends React.Component {
   }
 
   submit = (data) => {
-    console.log(data);
-  };
+    const { allDay, start, end, title, location, type, extraInfo, reminders } = data;
+    appointmentDefineMethod.call({ allDay, start, end, title, location, type, extraInfo, reminders },
+      (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Item added successfully', 'success');
 
+        }
+      });
+  };
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
@@ -108,7 +69,7 @@ class AppointmentForm extends React.Component {
               <SelectField name='time'/>
             </ListItemField>
           </ListField>
-          <HiddenField name='owner' value={'test'}/>
+          <HiddenField name={'owner'} value={Meteor.user().username}/>
           <SubmitField value='Submit'/>
           <ErrorsField/>
         </Form>

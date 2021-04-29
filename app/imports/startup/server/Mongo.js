@@ -1,18 +1,17 @@
-import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../../api/stuff/StuffCollection.js';
+import { Appointments } from '../../api/appointment/AppointmentCollection';
 
 /* eslint-disable no-console */
 
+const defaultAppointments = JSON.parse(Assets.getText('defaultAppointments.json'));
+
 /** Initialize the database with a default data document. */
-function addData(data) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
-  Stuffs.define(data);
+function addAppointments(data) {
+  console.log(`  Adding: ${data.title} (${data.owner})`);
+  Appointments.define(data);
 }
 
 /** Initialize the collection if empty. */
-if (Stuffs.count() === 0) {
-  if (Meteor.settings.defaultData) {
-    console.log('Creating default data.');
-    Meteor.settings.defaultData.map(data => addData(data));
-  }
+if (Appointments.count() === 0) {
+  console.log('Creating default appointment data.');
+  defaultAppointments.map(data => addAppointments(data));
 }

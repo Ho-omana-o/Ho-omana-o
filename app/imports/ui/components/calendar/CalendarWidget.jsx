@@ -1,10 +1,13 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Loader } from 'semantic-ui-react';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms;
 import { Calendar as Cal, momentLocalizer } from 'react-big-calendar';
 import style from 'react-big-calendar/lib/css/react-big-calendar.css';
 import swal from '@sweetalert/with-react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Appointments } from '../../../api/appointment/AppointmentCollection';
 import AppointmentForm from '../appointments/AppointmentForm';
 import AddAppointment from '../appointments/AddAppointment';
 
@@ -12,58 +15,16 @@ import AddAppointment from '../appointments/AddAppointment';
 // to the correct localizer.
 const localizer = momentLocalizer(moment);
 
-const dummyEvents = [
-  {
-    allDay: false,
-    start: new Date('April 21, 2021 11:13:00'),
-    end: new Date('April 21, 2021 12:30:00'),
-    title: 'Yearly Check Up',
-    type: 'Check Up',
-    location: 'Queen\'s Hospital',
-    owner: 'john@foo.com',
-    extraInfo: '',
-    reminders: [
-      {
-        type: 'Email',
-        time: 'Days',
-        number: 4,
-      },
-      {
-        type: 'Text',
-        time: 'Minutes',
-        number: 30,
-      },
-    ],
-  },
-  {
-    allDay: false,
-    start: new Date('April 09, 2021 9:13:00'),
-    end: new Date('April 09, 2021 11:13:00'),
-    title: 'Pick Up Medication',
-    type: 'Medication',
-    location: 'Queen\'s Hospital',
-    owner: 'john@foo.com',
-    extraInfo: 'Bring medicine card',
-    reminders: [
-      {
-        type: 'Text',
-        time: 'Days',
-        number: 4,
-      },
-      {
-        type: 'Email',
-        time: 'Hours',
-        number: 1,
-      },
-    ],
-  },
-];
-
 /** Renders the Page for adding stuff. */
 class CalendarWidget extends React.Component {
 
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
+  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
+    return (this.props.ready) ? this.renderPage() : <Loader active>Fetching Data</Loader>;
+  }
+
+  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
+  renderPage() {
     return (
       <Grid container centered className="main-content">
         <Grid.Column>
@@ -71,7 +32,7 @@ class CalendarWidget extends React.Component {
             <Cal
               selectable
               style={style}
-              events={dummyEvents}
+              events={this.props.appointments}
               step={60}
               showMultiDayTimes
               defaultDate={new Date()}
@@ -85,7 +46,7 @@ class CalendarWidget extends React.Component {
                 event => swal({
                   content: <AddAppointment event={event}/>,
                   className: 'reminder-modal',
-                  buttons: ['Close', 'Add'],
+                  buttons: 'Close',
               })}
             />
           </div>
@@ -95,4 +56,18 @@ class CalendarWidget extends React.Component {
   }
 }
 
-export default CalendarWidget;
+/** Ensure that the React Router location object is available in case we need to redirect. */
+CalendarWidget.propTypes = {
+  appointments: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  // Get access to Transaction documents.
+  const sub = Appointments.subscribeAppointment();
+  return {
+    appointments: Appointments.find({}).fetch(),
+    ready: sub.ready(),
+  };
+})(CalendarWidget);
