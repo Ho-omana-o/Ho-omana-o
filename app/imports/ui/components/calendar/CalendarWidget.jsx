@@ -6,6 +6,7 @@ import style from 'react-big-calendar/lib/css/react-big-calendar.css';
 import swal from '@sweetalert/with-react';
 import moment from 'moment';
 import AppointmentForm from '../appointments/AppointmentForm';
+import AddAppointment from '../appointments/AddAppointment';
 
 // Setup the localizer by providing the moment Object
 // to the correct localizer.
@@ -68,6 +69,7 @@ class CalendarWidget extends React.Component {
         <Grid.Column>
           <div>
             <Cal
+              selectable
               style={style}
               events={dummyEvents}
               step={60}
@@ -78,6 +80,12 @@ class CalendarWidget extends React.Component {
                 content: <AppointmentForm event={event}/>,
                 className: 'reminder-modal',
                 buttons: ['Close', 'Edit'],
+              })}
+              onSelectSlot={
+                event => swal({
+                  content: <AddAppointment event={event}/>,
+                  className: 'reminder-modal',
+                  buttons: ['Close', 'Add'],
               })}
             />
           </div>
