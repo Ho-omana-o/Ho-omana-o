@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '../../api/stuff/StuffCollection';
+import { Appointments } from '../../api/appointment/AppointmentCollection';
 
 /** Publish all the collections you need. */
-Stuffs.publish();
+Appointments.publish();
 
 /** Need this for the alanning:roles package */
 Meteor.publish(null, function () {

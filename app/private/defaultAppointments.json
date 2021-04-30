@@ -1,0 +1,46 @@
+[
+  {
+    "allDay": false,
+    "start": "April 21, 2021 11:13:00",
+    "end": "April 21, 2021 12:30:00",
+    "title": "Yearly Check Up",
+    "type": "Check Up",
+    "location": "Queen's Hospital",
+    "owner": "admin@foo.com",
+    "extraInfo": "",
+    "reminders": [
+      {
+        "type": "Email",
+        "time": "Days",
+        "number": 4
+      },
+      {
+        "type": "Text",
+        "time": "Minutes",
+        "number": 30
+      }
+    ]
+  },
+  {
+    "allDay": false,
+    "start": "April 09, 2021 9:13:00",
+    "end": "April 09, 2021 11:13:00",
+    "title": "Pick Up Medication",
+    "type": "Medication",
+    "location": "Queen's Hospital",
+    "owner": "admin@foo.com",
+    "extraInfo": "Bring medicine card",
+    "reminders": [
+      {
+        "type": "Text",
+        "time": "Days",
+        "number": 4
+      },
+      {
+        "type": "Email",
+        "time": "Hours",
+        "number": 1
+      }
+    ]
+  }
+]

@@ -4,59 +4,16 @@ import 'uniforms-bridge-simple-schema-2'; // required for Uniforms;
 import { Calendar as Cal, momentLocalizer } from 'react-big-calendar';
 import style from 'react-big-calendar/lib/css/react-big-calendar.css';
 import swal from '@sweetalert/with-react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import AppointmentForm from '../appointments/AppointmentForm';
+import AddAppointment from '../appointments/AddAppointment';
 
 // Setup the localizer by providing the moment Object
 // to the correct localizer.
-const localizer = momentLocalizer(moment);
 
-const dummyEvents = [
-  {
-    allDay: false,
-    start: new Date('April 21, 2021 11:13:00'),
-    end: new Date('April 21, 2021 12:30:00'),
-    title: 'Yearly Check Up',
-    type: 'Check Up',
-    location: 'Queen\'s Hospital',
-    owner: 'john@foo.com',
-    extraInfo: '',
-    reminders: [
-      {
-        type: 'Email',
-        time: 'Days',
-        number: 4,
-      },
-      {
-        type: 'Text',
-        time: 'Minutes',
-        number: 30,
-      },
-    ],
-  },
-  {
-    allDay: false,
-    start: new Date('April 09, 2021 9:13:00'),
-    end: new Date('April 09, 2021 11:13:00'),
-    title: 'Pick Up Medication',
-    type: 'Medication',
-    location: 'Queen\'s Hospital',
-    owner: 'john@foo.com',
-    extraInfo: 'Bring medicine card',
-    reminders: [
-      {
-        type: 'Text',
-        time: 'Days',
-        number: 4,
-      },
-      {
-        type: 'Email',
-        time: 'Hours',
-        number: 1,
-      },
-    ],
-  },
-];
+
+const localizer = momentLocalizer(moment);
 
 /** Renders the Page for adding stuff. */
 class CalendarWidget extends React.Component {
@@ -68,17 +25,26 @@ class CalendarWidget extends React.Component {
         <Grid.Column>
           <div>
             <Cal
+              selectable
               style={style}
-              events={dummyEvents}
+              events={this.props.appointments}
               step={60}
               showMultiDayTimes
               defaultDate={new Date()}
               localizer={localizer}
+              startAccessor={(event) => moment(event.start).add(10, 'hours').toDate()}
+              endAccessor={(event) => moment(event.end).clone().add(10, 'hours').toDate()}
               onSelectEvent={event => swal({
                 content: <AppointmentForm event={event}/>,
                 className: 'reminder-modal',
-                buttons: ['Close', 'Edit'],
+                buttons: 'Close',
               })}
+              onSelectSlot={
+                event => swal({
+                  content: <AddAppointment event={event}/>,
+                  className: 'reminder-modal',
+                  buttons: false,
+                })}
             />
           </div>
         </Grid.Column>
@@ -86,5 +52,10 @@ class CalendarWidget extends React.Component {
     );
   }
 }
+
+/** Ensure that the React Router location object is available in case we need to redirect. */
+CalendarWidget.propTypes = {
+  appointments: PropTypes.array.isRequired,
+};
 
 export default CalendarWidget;

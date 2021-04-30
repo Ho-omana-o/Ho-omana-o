@@ -9,7 +9,8 @@ import { Menu, Dropdown, Header } from 'semantic-ui-react';
 class NavBar extends React.Component {
   render() {
     return (
-        <Menu style={{ marginBottom: '10px', backgroundColor: '#1a2626' }} attached="top" borderless>
+        <Menu style={{ marginBottom: '10px', backgroundColor: '#1a2626', borderRadius: 0, border: 0 }}
+              attached="top" borderless>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
           <Header as='h1' style={{ backgroundColor: '#1a2626', color: 'white' }}>
             HO&apos;OMANA&apos;O
