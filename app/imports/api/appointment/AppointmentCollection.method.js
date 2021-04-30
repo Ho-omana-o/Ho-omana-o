@@ -15,10 +15,7 @@ export const appointmentDefineMethod = new ValidatedMethod({
   validate: null,
   run(definitionData) {
     if (Meteor.isServer) {
-      console.log('AppointmentCollection', definitionData);
-      const docID = Appointments.define(definitionData);
-      console.log(`stuffDefineMethod returning ${docID}. Now have ${Appointments.count()}`);
-      return docID;
+      return Appointments.define(definitionData);
     }
     return '';
   },

@@ -75,7 +75,6 @@ class AppointmentCollection extends BaseCollection {
    * @return {String} the docID of the new document.
    */
   define({ allDay = false, start, end, owner, title, location, type, extraInfo, reminders }) {
-    console.log('...');
     const docID = this._collection.insert({
       allDay,
       owner,

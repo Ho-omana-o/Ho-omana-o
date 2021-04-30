@@ -4,11 +4,12 @@ import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import EditAppointment from './EditAppointment';
 import moment from 'moment';
+import { appointmentRemoveItMethod } from '../../../api/appointment/AppointmentCollection.method';
 
 /** Renders the appointment listings. */
 class AppointmentListing extends React.Component {
 
-  onDelete = () => {
+  onDelete = (appointment) => {
     swal({
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this appointment!',
@@ -18,9 +19,16 @@ class AppointmentListing extends React.Component {
     })
       .then((willDelete) => {
         if (willDelete) {
-          swal('Your appointment was deleted.', {
-            icon: 'success',
-          });
+          appointmentRemoveItMethod.call(appointment._id,
+            (error) => {
+              if (error) {
+                swal('Error', error.message, 'error');
+              } else {
+                swal('Your appointment was deleted.', {
+                  icon: 'success',
+                });
+              }
+            });
         }
       });
   }
@@ -36,7 +44,7 @@ class AppointmentListing extends React.Component {
           <b>Location</b>: {this.props.appointment.location}
           <br/>
           <EditAppointment/>
-          <Label icon='trash' content={'Delete'} color={'red'} as={'a'} onClick={() => this.onDelete()}/>
+          <Label icon='trash' content={'Delete'} color={'red'} as={'a'} onClick={() => this.onDelete(this.props.appointment)}/>
         </Segment>
       );
     }
