@@ -37,14 +37,14 @@ class CalendarWidget extends React.Component {
               onSelectEvent={event => swal({
                 content: <AppointmentForm event={event}/>,
                 className: 'reminder-modal',
-                buttons: ['Close', 'Edit'],
+                buttons: 'Close',
               })}
               onSelectSlot={
                 event => swal({
                   content: <AddAppointment event={event}/>,
                   className: 'reminder-modal',
-                  buttons: 'Close',
-              })}
+                  buttons: false,
+                })}
             />
           </div>
         </Grid.Column>

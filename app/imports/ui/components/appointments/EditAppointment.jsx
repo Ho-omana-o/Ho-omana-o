@@ -5,7 +5,6 @@ import {
   AutoForm,
   ErrorsField,
   DateField,
-  BoolField,
   SubmitField,
   TextField,
   ListItemField,
@@ -67,7 +66,7 @@ class EditAppointment extends React.Component {
           <DateField name='start'/>
           <DateField name='end'/>
           <LongTextField name='extraInfo'/>
-          <ListField name="reminders" label={'Reminders'}>
+          <ListField name="reminders" label={'Reminder(s) before appointment'}>
             <ListItemField name="$">
               <SelectField name='type'/>
               <NumField name='number'/>

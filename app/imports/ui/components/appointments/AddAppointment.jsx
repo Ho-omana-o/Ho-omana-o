@@ -1,11 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Form, Header, Modal } from 'semantic-ui-react';
+import { Form, Header } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
   DateField,
-  BoolField,
   TextField,
   LongTextField,
   NumField,
@@ -60,7 +59,7 @@ class AppointmentForm extends React.Component {
           <DateField name='start'/>
           <DateField name='end'/>
           <LongTextField name='extraInfo' />
-          <ListField name="reminders">
+          <ListField name="reminders" label={'Reminder(s) before appointment'}>
             <ListItemField name='$'>
               <SelectField name='type'/>
               <NumField name='number'/>
@@ -69,8 +68,10 @@ class AppointmentForm extends React.Component {
           </ListField>
           <HiddenField name='allDay'/>
           <HiddenField name={'owner'} value={Meteor.user().username}/>
-          <SubmitField value='Submit'/>
           <ErrorsField/>
+          <div style={{ textAlign: 'right' }}>
+            <SubmitField value='Submit'/>
+          </div>
         </Form>
       </div>
     );

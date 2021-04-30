@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Modal } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
@@ -49,7 +49,7 @@ class AppointmentForm extends React.Component {
           <DateField name='start' disabled/>
           <DateField name='end' disabled/>
           <LongTextField name='extraInfo' disabled />
-          <ListField name="reminders" label={'Reminders'} disabled>
+          <ListField name="reminders" label={'Reminder(s) before appointment'} disabled>
             <ListItemField name='$' disabled style={{ opacity: '1' }}>
               <SelectField name='type' disabled/>
               <NumField name='number' disabled/>
