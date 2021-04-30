@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Form, Header } from 'semantic-ui-react';
+import { Form, Header, Modal } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
@@ -59,7 +59,6 @@ class AppointmentForm extends React.Component {
           <TextField name='type'/>
           <DateField name='start'/>
           <DateField name='end'/>
-          <BoolField name='allDay'/>
           <LongTextField name='extraInfo' />
           <ListField name="reminders">
             <ListItemField name='$'>
@@ -68,6 +67,7 @@ class AppointmentForm extends React.Component {
               <SelectField name='time'/>
             </ListItemField>
           </ListField>
+          <HiddenField name='allDay'/>
           <HiddenField name={'owner'} value={Meteor.user().username}/>
           <SubmitField value='Submit'/>
           <ErrorsField/>

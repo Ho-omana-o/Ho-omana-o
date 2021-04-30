@@ -66,7 +66,6 @@ class EditAppointment extends React.Component {
           <TextField name='type'/>
           <DateField name='start'/>
           <DateField name='end'/>
-          <BoolField name='allDay'/>
           <LongTextField name='extraInfo'/>
           <ListField name="reminders" label={'Reminders'}>
             <ListItemField name="$">
@@ -76,6 +75,7 @@ class EditAppointment extends React.Component {
             </ListItemField>
           </ListField>
           <HiddenField name={'owner'} value={Meteor.user().username}/>
+          <HiddenField name='allDay'/>
           <ErrorsField/>
         </Modal.Content>
         <Modal.Actions>

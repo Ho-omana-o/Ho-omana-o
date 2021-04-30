@@ -1,76 +1,22 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Modal } from 'semantic-ui-react';
 import {
   AutoForm,
   ErrorsField,
   DateField,
-  BoolField,
   TextField,
   LongTextField,
   NumField,
   ListField,
   ListItemField,
-  SelectField,
+  SelectField, HiddenField,
 } from 'uniforms-semantic';
 import PropTypes from 'prop-types';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import SimpleSchema from 'simpl-schema';
+import { Appointments } from '../../../api/appointment/AppointmentCollection';
 
-const formSchema = new SimpleSchema({
-  allDay: {
-    type: Boolean,
-    optional: true,
-  },
-  start: {
-    type: Date,
-  },
-  end: {
-    type: Date,
-  },
-  owner: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  type: {
-    type: String,
-  },
-  extraInfo: {
-    type: String,
-    optional: true,
-  },
-  reminders: {
-    optional: true,
-    type: Array,
-  },
-  'reminders.$': {
-    optional: true,
-    type: Object,
-  },
-  'reminders.$.type': {
-    optional: true,
-    type: String,
-    defaultValue: 'Email',
-    allowedValues: ['Email', 'Text'],
-  },
-  'reminders.$.time': {
-    optional: true,
-    type: String,
-    defaultValue: 'Minute',
-    allowedValues: ['Minutes', 'Hours', 'Days'],
-  },
-  'reminders.$.number': {
-    optional: true,
-    type: Number,
-    min: 0,
-  },
-});
 
-const bridge = new SimpleSchema2Bridge(formSchema);
+const bridge = new SimpleSchema2Bridge(Appointments.getSchema());
 
 /** Renders the widget for editing appointments. */
 class AppointmentForm extends React.Component {
@@ -102,7 +48,6 @@ class AppointmentForm extends React.Component {
           <TextField name='type' disabled/>
           <DateField name='start' disabled/>
           <DateField name='end' disabled/>
-          <BoolField name='allDay' disabled/>
           <LongTextField name='extraInfo' disabled />
           <ListField name="reminders" label={'Reminders'} disabled>
             <ListItemField name='$' disabled style={{ opacity: '1' }}>
@@ -111,6 +56,7 @@ class AppointmentForm extends React.Component {
               <SelectField name='time' disabled/>
             </ListItemField>
           </ListField>
+          <HiddenField name='allDay'/>
           <ErrorsField/>
         </Form>
       </div>
