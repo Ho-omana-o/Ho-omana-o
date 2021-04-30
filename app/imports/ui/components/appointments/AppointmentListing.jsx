@@ -2,8 +2,8 @@ import React from 'react';
 import { Segment, Label } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import PropTypes from 'prop-types';
-import EditAppointment from './EditAppointment';
 import moment from 'moment';
+import EditAppointment from './EditAppointment';
 import { appointmentRemoveItMethod } from '../../../api/appointment/AppointmentCollection.method';
 
 /** Renders the appointment listings. */
@@ -43,8 +43,9 @@ class AppointmentListing extends React.Component {
           <br/>
           <b>Location</b>: {this.props.appointment.location}
           <br/>
-          <EditAppointment/>
-          <Label icon='trash' content={'Delete'} color={'red'} as={'a'} onClick={() => this.onDelete(this.props.appointment)}/>
+          <EditAppointment appointment={this.props.appointment}/>
+          <Label icon='trash' content={'Delete'} color={'red'} as={'a'}
+                 onClick={() => this.onDelete(this.props.appointment)}/>
         </Segment>
       );
     }

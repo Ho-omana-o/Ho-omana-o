@@ -37,8 +37,7 @@ class AppointmentForm extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item added successfully', 'success');
-
+          swal('Success', 'Appointment added successfully', 'success');
         }
       });
   };
