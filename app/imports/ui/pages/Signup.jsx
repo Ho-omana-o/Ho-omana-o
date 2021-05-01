@@ -48,7 +48,7 @@ class Signup extends React.Component {
                 Sign up with us today
               </Header>
               <Segment attached
-                       style={{ fontSize: '50px', backgroundColor: '#1a2626', color: 'white' }}
+                       style={{ fontSize: '50px', color: 'white' }}
               >
                 <Form className="fluid" onSubmit={this.submit}>
                   <Form.Input
