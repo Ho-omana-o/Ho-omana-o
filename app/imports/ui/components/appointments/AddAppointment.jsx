@@ -53,21 +53,21 @@ class AppointmentForm extends React.Component {
               model={this.props.event}
               style={{ textAlign: 'left', maxHeight: '500px', overflowY: 'scroll' }}
               schema={bridge}>
-          <TextField name='title'/>
-          <TextField name='location'/>
-          <TextField name='type'/>
+          <TextField name='title' placeholder={'Flu Shot'}/>
+          <TextField name='location' placeholder={'Queen\'s Hospital'}/>
+          <TextField name='type' placeholder={'Yearly Check Up'}/>
           <DateField name='start'/>
           <DateField name='end'/>
-          <LongTextField name='extraInfo' />
+          <LongTextField name='extraInfo' placeholder={'Ask doctor about getting an allergy test.'}/>
           <ListField name="reminders" label={'Reminder(s) before appointment'}>
-            <ListItemField name='$'>
+            <ListItemField name="$">
               <SelectField name='type'/>
-              <NumField name='number'/>
+              <NumField name='number' min={0} decimal={false} placeholder={'30'}/>
               <SelectField name='time'/>
             </ListItemField>
           </ListField>
-          <HiddenField name='allDay'/>
           <HiddenField name={'owner'} value={Meteor.user().username}/>
+          <HiddenField name='allDay'/>
           <ErrorsField/>
           <div style={{ textAlign: 'right' }}>
             <SubmitField value='Submit'/>

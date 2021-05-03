@@ -49,10 +49,12 @@ class AppointmentCollection extends BaseCollection {
       'reminders.$.type': {
         type: String,
         allowedValues: ['Email', 'Text'],
+        defaultValue: 'Email',
       },
       'reminders.$.time': {
         type: String,
         allowedValues: ['Minutes', 'Hours', 'Days'],
+        defaultValue: 'Minutes',
       },
       'reminders.$.number': {
         type: Number,
