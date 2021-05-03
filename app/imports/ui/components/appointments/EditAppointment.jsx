@@ -62,15 +62,15 @@ class EditAppointment extends React.Component {
         <Modal.Content scrolling>
           <TextField name='title'/>
           <TextField name='location'/>
-          <TextField name='type'/>
+          <TextField name='type' placeholder={'Yearly Check Up'}/>
           <DateField name='start'/>
           <DateField name='end'/>
           <LongTextField name='extraInfo'/>
           <ListField name="reminders" label={'Reminder(s) before appointment'}>
             <ListItemField name="$">
-              <SelectField name='type'/>
-              <NumField name='number'/>
-              <SelectField name='time' />
+              <SelectField name='type' placeholder={'Email'}/>
+              <NumField name='number' min={0} decimal={true} placeholder={'30'}/>
+              <SelectField name='time' placeholder={'Days'}/>
             </ListItemField>
           </ListField>
           <HiddenField name={'owner'} value={Meteor.user().username}/>
