@@ -43,9 +43,9 @@ class Signup extends React.Component {
           <Grid.Row className="grid-row" verticalAlign="middle" stretched columns={1}>
             <Grid.Column>
               <Header as="h1" block textAlign="center"
-                      style={{ fontSize: '50px', backgroundColor: '#1a2626', color: 'white' }}
+                      style={{ fontSize: '50px' }}
               >
-                Sign up with us today
+                Sign up today!
               </Header>
               <Segment attached
                        style={{ fontSize: '50px', color: 'white' }}

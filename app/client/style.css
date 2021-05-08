@@ -154,3 +154,37 @@ p {
 .main-content {
     padding: 2rem 0 !important;
 }
+
+/* For landing page. */
+.landing {
+  background-color: white !important;
+}
+
+.landing_bottom_image {
+  background-color: white;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  padding-top: 10px;
+  padding-right: 471px;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+}
+
+.landingPage {
+  color: black !important;
+}
+/* Join button for LandingPage */
+.JoinButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+
+}
+/* For landing page. */
