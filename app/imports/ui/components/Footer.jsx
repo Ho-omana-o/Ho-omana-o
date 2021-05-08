@@ -10,7 +10,9 @@ class Footer extends React.Component {
           <div style={divStyle} className="ui center aligned container">
             <Header as='h4' style={{ backgroundColor: '#1a2626', color: 'white',
                 marginBottom: '50px' }}>
-              Footer
+              ICS 464 Human-Computer Interaction I
+              <br/>
+              Team 2 Project
             </Header>
           </div>
         </footer>
